@@ -3,6 +3,7 @@
 /.pkg
 /.cache
 /.vscode
+.idea
 /.history
 /.eventcache
 vendor
@@ -44,3 +45,4 @@ collector/otel_engine.exe
 # AI
 CLAUDE.local.md
 .codex/
+/.idea/

@@ -1151,6 +1151,8 @@ replace github.com/prometheus/mysqld_exporter => github.com/grafana/mysqld_expor
 // TODO: replace node_exporter with custom fork for multi usage. https://github.com/prometheus/node_exporter/pull/2812
 replace github.com/prometheus/node_exporter => github.com/grafana/node_exporter v0.18.1-grafana-r01.0.20251024135609-318b01780c89
 
+replace github.com/open-telemetry/opentelemetry-collector-contrib/pkg/stanza => ../opentelemetry-collector-contrib/pkg/stanza
+
 // Use Grafana fork of smimesign
 replace github.com/github/smimesign => github.com/grafana/smimesign v0.2.1-0.20220408144937-2a5adf3481d3
 
