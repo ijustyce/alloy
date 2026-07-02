@@ -41,6 +41,10 @@ replaces:
     dependency: gopkg.in/yaml.v2
     replacement: github.com/rfratto/go-yaml v0.0.0-20211119180816-77389c3526dc
 
+  - comment: Replace stanza with fork
+    dependency: github.com/open-telemetry/opentelemetry-collector-contrib/pkg/stanza
+    replacement: github.com/ijustyce/opentelemetry-collector-contrib/pkg/stanza v0.147.1-0.20260702090943-8f039a81432a
+
   - comment: Replace directives from Loki — Azure SDK
     dependency: github.com/Azure/azure-sdk-for-go
     replacement: github.com/Azure/azure-sdk-for-go v68.0.0+incompatible

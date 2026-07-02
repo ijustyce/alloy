@@ -1118,6 +1118,9 @@ tool github.com/99designs/gqlgen
 // Replace yaml.v2 with fork
 replace gopkg.in/yaml.v2 => github.com/rfratto/go-yaml v0.0.0-20211119180816-77389c3526dc
 
+// Replace stanza with fork
+replace github.com/open-telemetry/opentelemetry-collector-contrib/pkg/stanza => github.com/ijustyce/opentelemetry-collector-contrib/pkg/stanza v0.147.1-0.20260702090943-8f039a81432a
+
 // Replace directives from Loki — Azure SDK
 replace github.com/Azure/azure-sdk-for-go => github.com/Azure/azure-sdk-for-go v68.0.0+incompatible
 
@@ -1150,8 +1153,6 @@ replace github.com/prometheus/mysqld_exporter => github.com/grafana/mysqld_expor
 
 // TODO: replace node_exporter with custom fork for multi usage. https://github.com/prometheus/node_exporter/pull/2812
 replace github.com/prometheus/node_exporter => github.com/grafana/node_exporter v0.18.1-grafana-r01.0.20251024135609-318b01780c89
-
-replace github.com/open-telemetry/opentelemetry-collector-contrib/pkg/stanza => ../opentelemetry-collector-contrib/pkg/stanza
 
 // Use Grafana fork of smimesign
 replace github.com/github/smimesign => github.com/grafana/smimesign v0.2.1-0.20220408144937-2a5adf3481d3

@@ -1099,6 +1099,8 @@ replace github.com/grafana/alloy/extension/alloyengine => ../extension/alloyengi
 
 replace gopkg.in/yaml.v2 => github.com/rfratto/go-yaml v0.0.0-20211119180816-77389c3526dc
 
+replace github.com/open-telemetry/opentelemetry-collector-contrib/pkg/stanza => github.com/ijustyce/opentelemetry-collector-contrib/pkg/stanza v0.147.1-0.20260702090943-8f039a81432a
+
 replace github.com/Azure/azure-sdk-for-go => github.com/Azure/azure-sdk-for-go v68.0.0+incompatible
 
 replace github.com/Azure/azure-storage-blob-go => github.com/MasslessParticle/azure-storage-blob-go v0.14.1-0.20240322194317-344980fda573

@@ -106,6 +106,8 @@ replaces:
   # BEGIN GENERATED REPLACES - DO NOT EDIT MANUALLY
   # Replace yaml.v2 with fork
   - gopkg.in/yaml.v2 => github.com/rfratto/go-yaml v0.0.0-20211119180816-77389c3526dc
+  # Replace stanza with fork
+  - github.com/open-telemetry/opentelemetry-collector-contrib/pkg/stanza => github.com/ijustyce/opentelemetry-collector-contrib/pkg/stanza 8f039a81432a1f06e802e2a715fc808937f1d15d
   # Replace directives from Loki — Azure SDK
   - github.com/Azure/azure-sdk-for-go => github.com/Azure/azure-sdk-for-go v68.0.0+incompatible
   # Replace directives from Loki — Azure storage blob fork
