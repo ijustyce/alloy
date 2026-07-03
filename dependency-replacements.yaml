@@ -43,7 +43,7 @@ replaces:
 
   - comment: Replace stanza with fork
     dependency: github.com/open-telemetry/opentelemetry-collector-contrib/pkg/stanza
-    replacement: github.com/ijustyce/opentelemetry-collector-contrib/pkg/stanza 51f6c6cdc545ef08dda242dc13da803f2347c8b2
+    replacement: github.com/ijustyce/opentelemetry-collector-contrib/pkg/stanza f67d8ae59f07446e2e4f3c2b3a9f404ed09a6978
 
   - comment: Replace directives from Loki — Azure SDK
     dependency: github.com/Azure/azure-sdk-for-go

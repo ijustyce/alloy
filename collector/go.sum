@@ -1387,8 +1387,8 @@ github.com/iancoleman/strcase v0.3.0/go.mod h1:iwCmte+B7n89clKwxIoIXy/HfoL7AsD47
 github.com/ianlancetaylor/demangle v0.0.0-20181102032728-5e5cf60278f6/go.mod h1:aSSvb/t6k1mPoxDqO4vJh6VOCGPwU4O0C2/Eqndh1Sc=
 github.com/ianlancetaylor/demangle v0.0.0-20251118225945-96ee0021ea0f h1:Fnl4pzx8SR7k7JuzyW8lEtSFH6EQ8xgcypgIn8pcGIE=
 github.com/ianlancetaylor/demangle v0.0.0-20251118225945-96ee0021ea0f/go.mod h1:gx7rwoVhcfuVKG5uya9Hs3Sxj7EIvldVofAWIUtGouw=
-github.com/ijustyce/opentelemetry-collector-contrib/pkg/stanza v0.147.1-0.20260703032056-51f6c6cdc545 h1:/il3vGJF8r14B/AZH+MpcDzFC4XB5DFUUkTrM+HRBV0=
-github.com/ijustyce/opentelemetry-collector-contrib/pkg/stanza v0.147.1-0.20260703032056-51f6c6cdc545/go.mod h1:7xrNTcJru3csWJffpe1+0+IrwLnHYtlaSQeuq7vkjsM=
+github.com/ijustyce/opentelemetry-collector-contrib/pkg/stanza v0.147.1-0.20260703134416-f67d8ae59f07 h1:6Xle/Q2FWfDToFbj10sDYhw15PeR7gm2PO29IkzFqJk=
+github.com/ijustyce/opentelemetry-collector-contrib/pkg/stanza v0.147.1-0.20260703134416-f67d8ae59f07/go.mod h1:7xrNTcJru3csWJffpe1+0+IrwLnHYtlaSQeuq7vkjsM=
 github.com/illumos/go-kstat v0.0.0-20210513183136-173c9b0a9973 h1:hk4LPqXIY/c9XzRbe7dA6qQxaT6Axcbny0L/G5a4owQ=
 github.com/illumos/go-kstat v0.0.0-20210513183136-173c9b0a9973/go.mod h1:PoK3ejP3LJkGTzKqRlpvCIFas3ncU02v8zzWDW+g0FY=
 github.com/imdario/mergo v0.3.6/go.mod h1:2EnlNZ0deacrJVfApfmtdGgDfMuh/nq6Ok1EcJh5FfA=

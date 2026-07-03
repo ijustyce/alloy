@@ -55,7 +55,7 @@ func (tg *scrapePool) sync(groups []*targetgroup.Group) {
 	tg.mtx.Lock()
 	defer tg.mtx.Unlock()
 	allTargets := tg.config.ProfilingConfig.AllTargets()
-	tg.logger.Info("syncing target groups", "job", tg.config.JobName)
+	tg.logger.Debug("syncing target groups", "job", tg.config.JobName)
 	var actives []*Target
 	for _, group := range groups {
 		targets, err := targetsFromGroup(group, tg.config, allTargets)

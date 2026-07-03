@@ -22,6 +22,8 @@ ARG TARGETVARIANT
 ARG RELEASE_BUILD=1
 ARG VERSION
 ARG GOEXPERIMENT
+ARG BUILDER_USER
+ARG BUILDER_HOST
 
 COPY . /src/alloy
 WORKDIR /src/alloy
@@ -35,6 +37,8 @@ RUN --mount=type=cache,target=/root/.cache/go-build \
     GO_TAGS="netgo embedalloyui promtail_journal_enabled" \
     GOEXPERIMENT=${GOEXPERIMENT} \
     SKIP_UI_BUILD=1 \
+    BUILDER_USER="${BUILDER_USER:-$(whoami)}" \
+    BUILDER_HOST="${BUILDER_HOST:-$(hostname)}" \
     make alloy
 
 ###
