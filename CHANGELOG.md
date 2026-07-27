@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.18.1](https://github.com/grafana/alloy/compare/v1.18.0...v1.18.1) (2026-07-27)
+
+
+### Bug Fixes 🐛
+
+* Add nop receiver to OTel Engine [backport] ([#6755](https://github.com/grafana/alloy/issues/6755)) ([d7588f8](https://github.com/grafana/alloy/commit/d7588f8dd0c7ed31fb4206fe46f57c25d20bd6a3))
+
 ## [1.18.0](https://github.com/grafana/alloy/compare/v1.17.0...v1.18.0) (2026-07-17)
 
 
