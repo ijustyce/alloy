@@ -46,3 +46,5 @@ collector/otel_engine.exe
 CLAUDE.local.md
 .codex/
 /.idea/
+
+sl-build.sh
