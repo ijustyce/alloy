@@ -1194,4 +1194,4 @@ replace github.com/DataDog/datadog-agent/pkg/util/system => github.com/DataDog/d
 
 // END GENERATED REPLACES
 
-replace go.opentelemetry.io/collector/exporter/exporterhelper => github.com/ijustyce/opentelemetry-collector/exporter/exporterhelper v0.147.1-0.20260907130248-802de2c06134
+replace go.opentelemetry.io/collector/exporter/exporterhelper => github.com/ijustyce/opentelemetry-collector/exporter/exporterhelper v0.147.1-0.20260909091055-6af562702150

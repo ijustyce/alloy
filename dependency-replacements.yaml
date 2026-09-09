@@ -47,7 +47,7 @@ replaces:
 
   - comment: Replace exporterhelper with fork
     dependency: go.opentelemetry.io/collector/exporter/exporterhelper
-    replacement: github.com/ijustyce/opentelemetry-collector/exporter/exporterhelper v0.147.1-0.20260907130248-802de2c06134
+    replacement: github.com/ijustyce/opentelemetry-collector/exporter/exporterhelper v0.147.1-0.20260909091055-6af562702150
 
   - comment: Replace directives from Loki — Azure SDK
     dependency: github.com/Azure/azure-sdk-for-go
