@@ -207,19 +207,19 @@ func replace(groups []string, a slog.Attr) slog.Attr {
 		}
 
 	case slog.LevelKey:
-		level := a.Value.Any().(slog.Level)
-
-		// Override the value names to match go-kit/log, which would otherwise
-		// print as all-caps DEBUG/INFO/WARN/ERROR.
-		switch level {
-		case slog.LevelDebug:
-			return slog.Attr{Key: "level", Value: slog.StringValue("debug")}
-		case slog.LevelInfo:
-			return slog.Attr{Key: "level", Value: slog.StringValue("info")}
-		case slog.LevelWarn:
-			return slog.Attr{Key: "level", Value: slog.StringValue("warn")}
-		case slog.LevelError:
-			return slog.Attr{Key: "level", Value: slog.StringValue("error")}
+		if level, ok := a.Value.Any().(slog.Level); ok {
+			// Override the value names to match go-kit/log, which would otherwise
+			// print as all-caps DEBUG/INFO/WARN/ERROR.
+			switch level {
+			case slog.LevelDebug:
+				return slog.Attr{Key: "level", Value: slog.StringValue("debug")}
+			case slog.LevelInfo:
+				return slog.Attr{Key: "level", Value: slog.StringValue("info")}
+			case slog.LevelWarn:
+				return slog.Attr{Key: "level", Value: slog.StringValue("warn")}
+			case slog.LevelError:
+				return slog.Attr{Key: "level", Value: slog.StringValue("error")}
+			}
 		}
 	}
 
