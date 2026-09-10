@@ -1108,6 +1108,8 @@ replace github.com/open-telemetry/opentelemetry-collector-contrib/pkg/stanza => 
 
 replace go.opentelemetry.io/collector/exporter/exporterhelper => github.com/ijustyce/opentelemetry-collector/exporter/exporterhelper v0.147.1-0.20260909091055-6af562702150
 
+replace go.opentelemetry.io/collector/processor/batchprocessor => github.com/ijustyce/opentelemetry-collector/processor/batchprocessor v0.147.1-0.20260910014724-8bd7898a943d
+
 replace github.com/Azure/azure-sdk-for-go => github.com/Azure/azure-sdk-for-go v68.0.0+incompatible
 
 replace github.com/Azure/azure-storage-blob-go => github.com/MasslessParticle/azure-storage-blob-go v0.14.1-0.20240322194317-344980fda573

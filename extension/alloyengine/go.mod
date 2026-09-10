@@ -1072,6 +1072,9 @@ replace github.com/open-telemetry/opentelemetry-collector-contrib/pkg/stanza => 
 // Replace exporterhelper with fork
 replace go.opentelemetry.io/collector/exporter/exporterhelper => github.com/ijustyce/opentelemetry-collector/exporter/exporterhelper v0.147.1-0.20260909091055-6af562702150
 
+// Replace batchprocessor with fork
+replace go.opentelemetry.io/collector/processor/batchprocessor => github.com/ijustyce/opentelemetry-collector/processor/batchprocessor v0.147.1-0.20260910014724-8bd7898a943d
+
 // Replace directives from Loki — Azure SDK
 replace github.com/Azure/azure-sdk-for-go => github.com/Azure/azure-sdk-for-go v68.0.0+incompatible
 

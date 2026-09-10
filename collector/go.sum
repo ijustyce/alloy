@@ -1399,6 +1399,8 @@ github.com/ijustyce/opentelemetry-collector-contrib/pkg/stanza v0.147.1-0.202608
 github.com/ijustyce/opentelemetry-collector-contrib/pkg/stanza v0.147.1-0.20260831062116-bf3ff44c4ec3/go.mod h1:0XWKoCnhCdBNMSe/w+mn2nvI/9mQfAnf9Cv14fAQASE=
 github.com/ijustyce/opentelemetry-collector/exporter/exporterhelper v0.147.1-0.20260909091055-6af562702150 h1:mUBQTp8reMzoInteg7Ys6exPpeXHVFH/kRIWzUERuFI=
 github.com/ijustyce/opentelemetry-collector/exporter/exporterhelper v0.147.1-0.20260909091055-6af562702150/go.mod h1:6Yl9DTcsj8tRyjOfNFR0rUjkZil6Z7qwWcDb1fEfFvA=
+github.com/ijustyce/opentelemetry-collector/processor/batchprocessor v0.147.1-0.20260910014724-8bd7898a943d h1:vOmqK9/8Gc1MqHb80s3uvpTBnOiiAgkk9a6Q61N25Xs=
+github.com/ijustyce/opentelemetry-collector/processor/batchprocessor v0.147.1-0.20260910014724-8bd7898a943d/go.mod h1:31Qhvlc0BRQqR4MO/RvsfvR1EXC0ki4gku9z7/5DJq4=
 github.com/illumos/go-kstat v0.0.0-20210513183136-173c9b0a9973 h1:hk4LPqXIY/c9XzRbe7dA6qQxaT6Axcbny0L/G5a4owQ=
 github.com/illumos/go-kstat v0.0.0-20210513183136-173c9b0a9973/go.mod h1:PoK3ejP3LJkGTzKqRlpvCIFas3ncU02v8zzWDW+g0FY=
 github.com/imdario/mergo v0.3.6/go.mod h1:2EnlNZ0deacrJVfApfmtdGgDfMuh/nq6Ok1EcJh5FfA=
@@ -2664,8 +2666,6 @@ go.opentelemetry.io/collector/pipeline/xpipeline v0.147.0 h1:Pq3UGFbGHvU88XoCe9z
 go.opentelemetry.io/collector/pipeline/xpipeline v0.147.0/go.mod h1:NoL1h8a2rma3PRvcaSgDkHfU0sTv+Z5oJgfpgC+oEUE=
 go.opentelemetry.io/collector/processor v1.53.0 h1:ehUBUjVUIs8M/bfNfDuq1YhWuGzlet1UCKsdNP+8CWg=
 go.opentelemetry.io/collector/processor v1.53.0/go.mod h1:LtUUfQUo6FKJpd9uf9jwUqjJKa5twyiqkn4MSlHhcog=
-go.opentelemetry.io/collector/processor/batchprocessor v0.147.0 h1:0XJA9HHK9DdXj18xt6Y+NHj4BeEGOc4zg4+JhcgC5BU=
-go.opentelemetry.io/collector/processor/batchprocessor v0.147.0/go.mod h1:31Qhvlc0BRQqR4MO/RvsfvR1EXC0ki4gku9z7/5DJq4=
 go.opentelemetry.io/collector/processor/memorylimiterprocessor v0.147.0 h1:QZ2RAEDXpVIuD/yKTsXbvo8TGVfu0LlyT5dQmwq8udg=
 go.opentelemetry.io/collector/processor/memorylimiterprocessor v0.147.0/go.mod h1:e9vqVHM6LsMuUQRJGaFkvwJpz798975CF64q5uTjGOQ=
 go.opentelemetry.io/collector/processor/processorhelper v0.147.0 h1:u++6eUnxfbTf1/AFrQWkUAMHNSy72EPgvIY3xdy/mz4=
