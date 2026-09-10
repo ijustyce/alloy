@@ -43,7 +43,7 @@ replaces:
 
   - comment: Replace stanza with fork
     dependency: github.com/open-telemetry/opentelemetry-collector-contrib/pkg/stanza
-    replacement: github.com/ijustyce/opentelemetry-collector-contrib/pkg/stanza v0.147.1-0.20260910110004-cf7fef262a2e
+    replacement: github.com/ijustyce/opentelemetry-collector-contrib/pkg/stanza v0.147.1-0.20260910143254-01f506fd24a2
 
   - comment: Replace exporterhelper with fork
     dependency: go.opentelemetry.io/collector/exporter/exporterhelper

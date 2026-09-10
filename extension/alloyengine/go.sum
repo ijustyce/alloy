@@ -1424,8 +1424,8 @@ github.com/iancoleman/strcase v0.3.0/go.mod h1:iwCmte+B7n89clKwxIoIXy/HfoL7AsD47
 github.com/ianlancetaylor/demangle v0.0.0-20181102032728-5e5cf60278f6/go.mod h1:aSSvb/t6k1mPoxDqO4vJh6VOCGPwU4O0C2/Eqndh1Sc=
 github.com/ianlancetaylor/demangle v0.0.0-20251118225945-96ee0021ea0f h1:Fnl4pzx8SR7k7JuzyW8lEtSFH6EQ8xgcypgIn8pcGIE=
 github.com/ianlancetaylor/demangle v0.0.0-20251118225945-96ee0021ea0f/go.mod h1:gx7rwoVhcfuVKG5uya9Hs3Sxj7EIvldVofAWIUtGouw=
-github.com/ijustyce/opentelemetry-collector-contrib/pkg/stanza v0.147.1-0.20260910110004-cf7fef262a2e h1:AWJ0/pgZRLPkzcfC0cQMhnafWSXwKmwNViUH7vysse8=
-github.com/ijustyce/opentelemetry-collector-contrib/pkg/stanza v0.147.1-0.20260910110004-cf7fef262a2e/go.mod h1:0XWKoCnhCdBNMSe/w+mn2nvI/9mQfAnf9Cv14fAQASE=
+github.com/ijustyce/opentelemetry-collector-contrib/pkg/stanza v0.147.1-0.20260910143254-01f506fd24a2 h1:bm6BpFEQWwpv+vG1S0aQtITT+QJtYwgLfXVECuK9/nA=
+github.com/ijustyce/opentelemetry-collector-contrib/pkg/stanza v0.147.1-0.20260910143254-01f506fd24a2/go.mod h1:0XWKoCnhCdBNMSe/w+mn2nvI/9mQfAnf9Cv14fAQASE=
 github.com/ijustyce/opentelemetry-collector/exporter/exporterhelper v0.147.1-0.20260909091055-6af562702150 h1:mUBQTp8reMzoInteg7Ys6exPpeXHVFH/kRIWzUERuFI=
 github.com/ijustyce/opentelemetry-collector/exporter/exporterhelper v0.147.1-0.20260909091055-6af562702150/go.mod h1:6Yl9DTcsj8tRyjOfNFR0rUjkZil6Z7qwWcDb1fEfFvA=
 github.com/ijustyce/opentelemetry-collector/processor/batchprocessor v0.147.1-0.20260910014724-8bd7898a943d h1:vOmqK9/8Gc1MqHb80s3uvpTBnOiiAgkk9a6Q61N25Xs=
