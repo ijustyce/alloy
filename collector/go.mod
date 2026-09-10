@@ -1104,7 +1104,7 @@ replace github.com/grafana/alloy/extension/alloyengine => ../extension/alloyengi
 
 replace gopkg.in/yaml.v2 => github.com/rfratto/go-yaml v0.0.0-20211119180816-77389c3526dc
 
-replace github.com/open-telemetry/opentelemetry-collector-contrib/pkg/stanza => github.com/ijustyce/opentelemetry-collector-contrib/pkg/stanza v0.147.1-0.20260831062116-bf3ff44c4ec3
+replace github.com/open-telemetry/opentelemetry-collector-contrib/pkg/stanza => github.com/ijustyce/opentelemetry-collector-contrib/pkg/stanza v0.147.1-0.20260910110004-cf7fef262a2e
 
 replace go.opentelemetry.io/collector/exporter/exporterhelper => github.com/ijustyce/opentelemetry-collector/exporter/exporterhelper v0.147.1-0.20260909091055-6af562702150
 

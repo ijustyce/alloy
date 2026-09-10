@@ -1123,9 +1123,6 @@ tool github.com/99designs/gqlgen
 // Replace yaml.v2 with fork
 replace gopkg.in/yaml.v2 => github.com/rfratto/go-yaml v0.0.0-20211119180816-77389c3526dc
 
-// Replace stanza with fork
-replace github.com/open-telemetry/opentelemetry-collector-contrib/pkg/stanza => github.com/ijustyce/opentelemetry-collector-contrib/pkg/stanza v0.147.1-0.20260831062116-bf3ff44c4ec3
-
 // Replace directives from Loki — Azure SDK
 replace github.com/Azure/azure-sdk-for-go => github.com/Azure/azure-sdk-for-go v68.0.0+incompatible
 
@@ -1197,3 +1194,5 @@ replace github.com/DataDog/datadog-agent/pkg/util/system => github.com/DataDog/d
 replace go.opentelemetry.io/collector/exporter/exporterhelper => github.com/ijustyce/opentelemetry-collector/exporter/exporterhelper v0.147.1-0.20260909091055-6af562702150
 
 replace go.opentelemetry.io/collector/processor/batchprocessor => github.com/ijustyce/opentelemetry-collector/processor/batchprocessor v0.147.1-0.20260910014724-8bd7898a943d
+
+replace github.com/open-telemetry/opentelemetry-collector-contrib/pkg/stanza => github.com/ijustyce/opentelemetry-collector-contrib/pkg/stanza v0.147.1-0.20260910110004-cf7fef262a2e
