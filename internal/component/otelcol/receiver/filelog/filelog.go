@@ -8,6 +8,8 @@ import (
 	"time"
 
 	"github.com/alecthomas/units"
+	"github.com/hashicorp/go-multierror"
+
 	"github.com/grafana/alloy/internal/component"
 	"github.com/grafana/alloy/internal/component/otelcol"
 	otelcolCfg "github.com/grafana/alloy/internal/component/otelcol/config"
@@ -15,7 +17,6 @@ import (
 	"github.com/grafana/alloy/internal/component/otelcol/internal/textutils"
 	"github.com/grafana/alloy/internal/component/otelcol/receiver"
 	"github.com/grafana/alloy/internal/featuregate"
-	"github.com/hashicorp/go-multierror"
 
 	"github.com/open-telemetry/opentelemetry-collector-contrib/pkg/stanza/fileconsumer"
 	"github.com/open-telemetry/opentelemetry-collector-contrib/pkg/stanza/fileconsumer/attrs"
@@ -131,7 +132,8 @@ func (args *Arguments) SetToDefault() {
 		PollInterval:       200 * time.Millisecond,
 		FingerprintSize:    units.KiB,
 		MaxLogSize:         units.MiB,
-		MaxConcurrentFiles: 1024,
+		MaxConcurrentFiles: 200,
+		MaxBatches:         1024,
 	}
 	args.DebugMetrics.SetToDefault()
 	args.ConsumerRetry.SetToDefault()
