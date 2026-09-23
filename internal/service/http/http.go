@@ -102,6 +102,8 @@ type Service struct {
 
 	memLis *memconn.Listener
 
+	logLevel *logLevelHandler
+
 	componentHttpPathPrefix          string
 	componentHttpPathPrefixRemotecfg string
 }
@@ -146,6 +148,7 @@ func New(opts Options) *Service {
 		publicLis: publicLis,
 		tcpLis:    tcpLis,
 		memLis:    memconn.NewListener(slogadapter.GoKit(l.Handler())),
+		logLevel:  newLogLevelHandler(l, logLevelResetAfter),
 
 		componentHttpPathPrefix:          "/api/v0/component/",
 		componentHttpPathPrefixRemotecfg: "/api/v0/component/remotecfg",
@@ -167,6 +170,7 @@ func (s *Service) Definition() service.Definition {
 func (s *Service) Run(ctx context.Context, host service.Host) error {
 	var wg sync.WaitGroup
 	defer wg.Wait()
+	defer s.logLevel.close()
 
 	ctx, cancel := context.WithCancel(ctx)
 	defer cancel()
@@ -210,6 +214,10 @@ func (s *Service) Run(ctx context.Context, host service.Host) error {
 			h.ServeHTTP(w, r)
 		})
 	})
+
+	// This endpoint is intentionally unauthenticated so operators can change
+	// logging during an incident even when Alloy's HTTP authentication is enabled.
+	r.Handle(logLevelPath, s.logLevel)
 
 	// The implementation for "/-/healthy" is inspired by
 	// the "/components" web API endpoint in /internal/web/api/api.go

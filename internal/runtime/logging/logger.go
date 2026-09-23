@@ -30,6 +30,10 @@ type Logger struct {
 	format *formatVar     // Current configured format.
 	writer *writerVar     // Current configured multiwriter (inner + write_to + event log).
 
+	initialLevelMut sync.RWMutex
+	initialLevel    Level
+	hasInitialLevel bool
+
 	// handler is the single slog.Handler dispatched to by both the
 	// gokit and slog paths. It is set once in NewDeferred and never
 	// reassigned. Its writer (a *writerVar) owns every sink, including
@@ -125,6 +129,13 @@ func (l *Logger) Update(o Options) error {
 	l.writer.SetLokiWriter(o.WriteTo)
 	l.bufferMut.Unlock()
 
+	l.initialLevelMut.Lock()
+	if !l.hasInitialLevel {
+		l.initialLevel = o.Level
+		l.hasInitialLevel = true
+	}
+	l.initialLevelMut.Unlock()
+
 	// Rebuild deferred slog handlers outside bufferMut to avoid a deadlock
 	// with concurrent Handle() calls (they hold a child handler's RLock
 	// while waiting for bufferMut via addRecord).
@@ -133,6 +144,35 @@ func (l *Logger) Update(o Options) error {
 	}
 	l.flushBuffer()
 	return nil
+}
+
+// Level returns the logger's current level.
+func (l *Logger) Level() Level {
+	switch l.level.Level() {
+	case slog.LevelDebug:
+		return LevelDebug
+	case slog.LevelInfo:
+		return LevelInfo
+	case slog.LevelWarn:
+		return LevelWarn
+	case slog.LevelError:
+		return LevelError
+	default:
+		return LevelDefault
+	}
+}
+
+// InitialLevel returns the level configured when the logger was first updated.
+func (l *Logger) InitialLevel() (Level, bool) {
+	l.initialLevelMut.RLock()
+	defer l.initialLevelMut.RUnlock()
+	return l.initialLevel, l.hasInitialLevel
+}
+
+// SetLevel updates only the current log level. It does not update logging
+// configuration or the startup level returned by InitialLevel.
+func (l *Logger) SetLevel(level Level) {
+	l.level.Set(slogLevel(level).Level())
 }
 
 // flushBuffer drains and replays any logs that were buffered before
