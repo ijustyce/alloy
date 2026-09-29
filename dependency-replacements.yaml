@@ -43,11 +43,11 @@ replaces:
 
   - comment: Replace stanza with fork
     dependency: github.com/open-telemetry/opentelemetry-collector-contrib/pkg/stanza
-    replacement: github.com/ijustyce/opentelemetry-collector-contrib/pkg/stanza v0.147.1-0.20260929031410-88685f1bef10
+    replacement: github.com/ijustyce/opentelemetry-collector-contrib/pkg/stanza v0.147.1-0.20260929064250-cafa88dd466d
 
   - comment: Replace kafka receiver with fork
     dependency: github.com/open-telemetry/opentelemetry-collector-contrib/receiver/kafkareceiver
-    replacement: github.com/ijustyce/opentelemetry-collector-contrib/receiver/kafkareceiver v0.147.1-0.20260929031410-88685f1bef10
+    replacement: github.com/ijustyce/opentelemetry-collector-contrib/receiver/kafkareceiver v0.147.1-0.20260929064250-cafa88dd466d
 
   - comment: Replace exporterhelper with fork
     dependency: go.opentelemetry.io/collector/exporter/exporterhelper

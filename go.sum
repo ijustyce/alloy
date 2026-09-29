@@ -1462,10 +1462,10 @@ github.com/iancoleman/strcase v0.3.0/go.mod h1:iwCmte+B7n89clKwxIoIXy/HfoL7AsD47
 github.com/ianlancetaylor/demangle v0.0.0-20181102032728-5e5cf60278f6/go.mod h1:aSSvb/t6k1mPoxDqO4vJh6VOCGPwU4O0C2/Eqndh1Sc=
 github.com/ianlancetaylor/demangle v0.0.0-20251118225945-96ee0021ea0f h1:Fnl4pzx8SR7k7JuzyW8lEtSFH6EQ8xgcypgIn8pcGIE=
 github.com/ianlancetaylor/demangle v0.0.0-20251118225945-96ee0021ea0f/go.mod h1:gx7rwoVhcfuVKG5uya9Hs3Sxj7EIvldVofAWIUtGouw=
-github.com/ijustyce/opentelemetry-collector-contrib/pkg/stanza v0.147.1-0.20260929031410-88685f1bef10 h1:Vf8hO+ayLH1zc2XO1Nym3F6Ou98J9lf2JeAwWppRXZs=
-github.com/ijustyce/opentelemetry-collector-contrib/pkg/stanza v0.147.1-0.20260929031410-88685f1bef10/go.mod h1:0XWKoCnhCdBNMSe/w+mn2nvI/9mQfAnf9Cv14fAQASE=
-github.com/ijustyce/opentelemetry-collector-contrib/receiver/kafkareceiver v0.147.1-0.20260929031410-88685f1bef10 h1:LKlqqTyBrMvdXuCjOLPsRUZG0g20pnBMQ2LfZjRL2wk=
-github.com/ijustyce/opentelemetry-collector-contrib/receiver/kafkareceiver v0.147.1-0.20260929031410-88685f1bef10/go.mod h1:YHzzAESLZ+ecM23UheTEaZdP67xHyQxGzQ1u1AHcbKo=
+github.com/ijustyce/opentelemetry-collector-contrib/pkg/stanza v0.147.1-0.20260929064250-cafa88dd466d h1:MmKpxN6ODJtZ4LGbb9sPD5mzF37nJp91bZLItASpykM=
+github.com/ijustyce/opentelemetry-collector-contrib/pkg/stanza v0.147.1-0.20260929064250-cafa88dd466d/go.mod h1:0XWKoCnhCdBNMSe/w+mn2nvI/9mQfAnf9Cv14fAQASE=
+github.com/ijustyce/opentelemetry-collector-contrib/receiver/kafkareceiver v0.147.1-0.20260929064250-cafa88dd466d h1:EtAx3ZR6EXzo8WdVWOtD1Pk5Z+74dIccTaKQGQ+/Dvc=
+github.com/ijustyce/opentelemetry-collector-contrib/receiver/kafkareceiver v0.147.1-0.20260929064250-cafa88dd466d/go.mod h1:YHzzAESLZ+ecM23UheTEaZdP67xHyQxGzQ1u1AHcbKo=
 github.com/ijustyce/opentelemetry-collector/exporter/exporterhelper v0.147.1-0.20260929015615-5305dd99ab5b h1:cFoDHzW3W28CZG9Fw4avEftt933NZxfRW3wY1uivRMg=
 github.com/ijustyce/opentelemetry-collector/exporter/exporterhelper v0.147.1-0.20260929015615-5305dd99ab5b/go.mod h1:6Yl9DTcsj8tRyjOfNFR0rUjkZil6Z7qwWcDb1fEfFvA=
 github.com/ijustyce/opentelemetry-collector/exporter/otlphttpexporter v0.147.1-0.20260929015615-5305dd99ab5b h1:fdBRlqP4nItuHkWRSO6plTapnOWNh7N6p34Xs/bpGWQ=
