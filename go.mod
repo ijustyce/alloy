@@ -899,7 +899,7 @@ require (
 	go.opentelemetry.io/collector/consumer/consumererror/xconsumererror v0.147.0 // indirect
 	go.opentelemetry.io/collector/consumer/xconsumer v0.147.0 // indirect
 	go.opentelemetry.io/collector/exporter/exporterhelper/xexporterhelper v0.147.0 // indirect
-	go.opentelemetry.io/collector/exporter/exportertest v0.147.0 // indirect
+	go.opentelemetry.io/collector/exporter/exportertest v0.147.0
 	go.opentelemetry.io/collector/exporter/xexporter v0.147.0 // indirect
 	go.opentelemetry.io/collector/extension/extensioncapabilities v0.147.0 // indirect
 	go.opentelemetry.io/collector/extension/extensionmiddleware v0.147.0 // indirect
@@ -1123,6 +1123,21 @@ tool github.com/99designs/gqlgen
 // Replace yaml.v2 with fork
 replace gopkg.in/yaml.v2 => github.com/rfratto/go-yaml v0.0.0-20211119180816-77389c3526dc
 
+// Replace stanza with fork
+replace github.com/open-telemetry/opentelemetry-collector-contrib/pkg/stanza => github.com/ijustyce/opentelemetry-collector-contrib/pkg/stanza v0.147.1-0.20260929031410-88685f1bef10
+
+// Replace kafka receiver with fork
+replace github.com/open-telemetry/opentelemetry-collector-contrib/receiver/kafkareceiver => github.com/ijustyce/opentelemetry-collector-contrib/receiver/kafkareceiver v0.147.1-0.20260929031410-88685f1bef10
+
+// Replace exporterhelper with fork
+replace go.opentelemetry.io/collector/exporter/exporterhelper => github.com/ijustyce/opentelemetry-collector/exporter/exporterhelper v0.147.1-0.20260929015615-5305dd99ab5b
+
+// Use the sibling Collector checkout for OTLP HTTP fallback support during local development.
+replace go.opentelemetry.io/collector/exporter/otlphttpexporter => github.com/ijustyce/opentelemetry-collector/exporter/otlphttpexporter v0.147.1-0.20260929015615-5305dd99ab5b
+
+// Replace batchprocessor with fork
+replace go.opentelemetry.io/collector/processor/batchprocessor => github.com/ijustyce/opentelemetry-collector/processor/batchprocessor v0.147.1-0.20260929015615-5305dd99ab5b
+
 // Replace directives from Loki — Azure SDK
 replace github.com/Azure/azure-sdk-for-go => github.com/Azure/azure-sdk-for-go v68.0.0+incompatible
 
@@ -1190,9 +1205,3 @@ replace github.com/hashicorp/vault/api/auth/aws => github.com/DataDog/vault/api/
 replace github.com/DataDog/datadog-agent/pkg/util/system => github.com/DataDog/datadog-agent/pkg/util/system v0.76.0-rc.2
 
 // END GENERATED REPLACES
-
-replace go.opentelemetry.io/collector/exporter/exporterhelper => github.com/ijustyce/opentelemetry-collector/exporter/exporterhelper v0.147.1-0.20260909091055-6af562702150
-
-replace go.opentelemetry.io/collector/processor/batchprocessor => github.com/ijustyce/opentelemetry-collector/processor/batchprocessor v0.147.1-0.20260910014724-8bd7898a943d
-
-replace github.com/open-telemetry/opentelemetry-collector-contrib/pkg/stanza => github.com/ijustyce/opentelemetry-collector-contrib/pkg/stanza v0.147.1-0.20260923065056-2d557af4d170

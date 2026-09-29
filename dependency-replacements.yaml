@@ -43,15 +43,23 @@ replaces:
 
   - comment: Replace stanza with fork
     dependency: github.com/open-telemetry/opentelemetry-collector-contrib/pkg/stanza
-    replacement: github.com/ijustyce/opentelemetry-collector-contrib/pkg/stanza v0.147.1-0.20260923065056-2d557af4d170
+    replacement: github.com/ijustyce/opentelemetry-collector-contrib/pkg/stanza v0.147.1-0.20260929031410-88685f1bef10
+
+  - comment: Replace kafka receiver with fork
+    dependency: github.com/open-telemetry/opentelemetry-collector-contrib/receiver/kafkareceiver
+    replacement: github.com/ijustyce/opentelemetry-collector-contrib/receiver/kafkareceiver v0.147.1-0.20260929031410-88685f1bef10
 
   - comment: Replace exporterhelper with fork
     dependency: go.opentelemetry.io/collector/exporter/exporterhelper
-    replacement: github.com/ijustyce/opentelemetry-collector/exporter/exporterhelper v0.147.1-0.20260909091055-6af562702150
+    replacement: github.com/ijustyce/opentelemetry-collector/exporter/exporterhelper v0.147.1-0.20260929015615-5305dd99ab5b
+
+  - comment: Use the sibling Collector checkout for OTLP HTTP fallback support during local development.
+    dependency: go.opentelemetry.io/collector/exporter/otlphttpexporter
+    replacement: github.com/ijustyce/opentelemetry-collector/exporter/otlphttpexporter v0.147.1-0.20260929015615-5305dd99ab5b
 
   - comment: Replace batchprocessor with fork
     dependency: go.opentelemetry.io/collector/processor/batchprocessor
-    replacement: github.com/ijustyce/opentelemetry-collector/processor/batchprocessor v0.147.1-0.20260910014724-8bd7898a943d
+    replacement: github.com/ijustyce/opentelemetry-collector/processor/batchprocessor v0.147.1-0.20260929015615-5305dd99ab5b
 
   - comment: Replace directives from Loki — Azure SDK
     dependency: github.com/Azure/azure-sdk-for-go

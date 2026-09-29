@@ -33,9 +33,10 @@ func init() {
 
 // Arguments configures the otelcol.exporter.otlphttp component.
 type Arguments struct {
-	Client HTTPClientArguments    `alloy:"client,block"`
-	Queue  otelcol.QueueArguments `alloy:"sending_queue,block,optional"`
-	Retry  otelcol.RetryArguments `alloy:"retry_on_failure,block,optional"`
+	Client         HTTPClientArguments    `alloy:"client,block"`
+	FallbackClient *HTTPClientArguments   `alloy:"fallback_client,block,optional"`
+	Queue          otelcol.QueueArguments `alloy:"sending_queue,block,optional"`
+	Retry          otelcol.RetryArguments `alloy:"retry_on_failure,block,optional"`
 
 	// DebugMetrics configures component internal metrics. Optional.
 	DebugMetrics otelcolCfg.DebugMetricsArguments `alloy:"debug_metrics,block,optional"`
@@ -76,12 +77,17 @@ func (args Arguments) Convert() (otelcomponent.Config, error) {
 	if err != nil {
 		return nil, err
 	}
+	fallbackClient, err := (*otelcol.HTTPClientArguments)(args.FallbackClient).Convert()
+	if err != nil {
+		return nil, fmt.Errorf("fallback_client: %w", err)
+	}
 	q, err := args.Queue.Convert()
 	if err != nil {
 		return nil, err
 	}
 	return &otlphttpexporter.Config{
 		ClientConfig:    *convertedClientArgs,
+		FallbackClient:  fallbackClient,
 		QueueConfig:     q,
 		RetryConfig:     *args.Retry.Convert(),
 		TracesEndpoint:  args.TracesEndpoint,
@@ -94,6 +100,9 @@ func (args Arguments) Convert() (otelcomponent.Config, error) {
 // Extensions implements exporter.Arguments.
 func (args Arguments) Extensions() map[otelcomponent.ID]otelcomponent.Component {
 	ext := (*otelcol.HTTPClientArguments)(&args.Client).Extensions()
+	if args.FallbackClient != nil {
+		maps.Copy(ext, (*otelcol.HTTPClientArguments)(args.FallbackClient).Extensions())
+	}
 	maps.Copy(ext, args.Queue.Extensions())
 	return ext
 }
@@ -110,6 +119,9 @@ func (args Arguments) DebugMetricsConfig() otelcolCfg.DebugMetricsArguments {
 
 // Validate implements syntax.Validator.
 func (args *Arguments) Validate() error {
+	if args.FallbackClient != nil && args.FallbackClient.Endpoint == "" {
+		return errors.New("fallback_client.endpoint must be specified")
+	}
 	if args.Client.Endpoint == "" && args.TracesEndpoint == "" && args.MetricsEndpoint == "" && args.LogsEndpoint == "" {
 		return errors.New("at least one endpoint must be specified")
 	}

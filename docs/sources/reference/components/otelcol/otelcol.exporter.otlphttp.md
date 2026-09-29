@@ -56,6 +56,7 @@ You can use the following blocks with `otelcol.exporter.otlphttp`:
 | Block                                                 | Description                                                                    | Required |
 | ----------------------------------------------------- | ------------------------------------------------------------------------------ | -------- |
 | [`client`][client]                                    | Configures the HTTP client to send telemetry data to.                          | yes      |
+| [`fallback_client`][fallback_client]                  | Configures the backup HTTP client and destination used after a timeout.       | no       |
 | `client` > [`compression_params`][compression_params] | Configure advanced compression options.                                        | no       |
 | `client` > [`cookies`][cookies]                       | Store cookies from server responses and reuse them in subsequent requests.     | no       |
 | `client` > [`tls`][tls]                               | Configures TLS for the HTTP client.                                            | no       |
@@ -66,6 +67,7 @@ You can use the following blocks with `otelcol.exporter.otlphttp`:
 | `sending_queue` > [`batch`][batch]                    | Configures batching requests based on a timeout and a minimum number of items. | no       |
 
 [client]: #client
+[fallback_client]: #fallback_client
 [tls]: #tls
 [tpm]: #tpm
 [cookies]: #cookies
@@ -84,6 +86,37 @@ You can use the following blocks with `otelcol.exporter.otlphttp`:
 The `client` block configures the HTTP client used by the component.
 
 {{< docs/shared lookup="reference/components/otelcol-http-client-block.md" source="alloy" version="<ALLOY_VERSION>" >}}
+
+### `fallback_client`
+
+The optional `fallback_client` block configures an independent HTTP client and destination to use when the primary client times out.
+It accepts the same arguments and defaults as [`client`](#client), including a required `endpoint`.
+Authentication, TLS, headers, and proxy settings aren't inherited from `client`.
+
+The exporter appends `/v1/metrics`, `/v1/logs`, or `/v1/traces` to the fallback endpoint.
+Primary `metrics_endpoint`, `logs_endpoint`, and `traces_endpoint` overrides don't affect the fallback destination.
+
+After the first timeout, requests use the fallback client for one minute.
+The next request after that interval probes the primary client while other requests continue using the fallback client.
+If the probe times out, the interval increases to two minutes and remains capped at two minutes.
+A primary HTTP response ends fallback mode and resets the interval, regardless of its status code.
+Non-timeout errors and canceled or expired request contexts don't trigger a switch to the fallback client.
+
+For example, configure separate primary and backup destinations:
+
+```alloy
+otelcol.exporter.otlphttp "example" {
+  client {
+    endpoint = "https://primary.example.com"
+    timeout  = "10s"
+  }
+
+  fallback_client {
+    endpoint = "https://backup.example.com"
+    timeout  = "30s"
+  }
+}
+```
 
 ### `compression_params`
 
