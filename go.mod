@@ -1127,10 +1127,10 @@ replace gopkg.in/yaml.v2 => github.com/rfratto/go-yaml v0.0.0-20211119180816-773
 replace github.com/open-telemetry/opentelemetry-collector-contrib/pkg/stanza => github.com/ijustyce/opentelemetry-collector-contrib/pkg/stanza v0.147.1-0.20260929064250-cafa88dd466d
 
 // Replace exporterhelper with fork
-replace go.opentelemetry.io/collector/exporter/exporterhelper => github.com/ijustyce/opentelemetry-collector/exporter/exporterhelper v0.147.1-0.20260929015615-5305dd99ab5b
+replace go.opentelemetry.io/collector/exporter/exporterhelper => github.com/ijustyce/opentelemetry-collector/exporter/exporterhelper v0.147.1-0.20261009060331-655a536023ec
 
 // Use the sibling Collector checkout for OTLP HTTP fallback support during local development.
-replace go.opentelemetry.io/collector/exporter/otlphttpexporter => github.com/ijustyce/opentelemetry-collector/exporter/otlphttpexporter v0.147.1-0.20260929015615-5305dd99ab5b
+replace go.opentelemetry.io/collector/exporter/otlphttpexporter => github.com/ijustyce/opentelemetry-collector/exporter/otlphttpexporter v0.147.1-0.20261009060331-655a536023ec
 
 // Replace batchprocessor with fork
 replace go.opentelemetry.io/collector/processor/batchprocessor => github.com/ijustyce/opentelemetry-collector/processor/batchprocessor v0.147.1-0.20260929015615-5305dd99ab5b

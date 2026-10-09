@@ -1468,8 +1468,10 @@ github.com/ijustyce/opentelemetry-collector-contrib/receiver/kafkareceiver v0.14
 github.com/ijustyce/opentelemetry-collector-contrib/receiver/kafkareceiver v0.147.1-0.20260929064250-cafa88dd466d/go.mod h1:YHzzAESLZ+ecM23UheTEaZdP67xHyQxGzQ1u1AHcbKo=
 github.com/ijustyce/opentelemetry-collector/exporter/exporterhelper v0.147.1-0.20260929015615-5305dd99ab5b h1:cFoDHzW3W28CZG9Fw4avEftt933NZxfRW3wY1uivRMg=
 github.com/ijustyce/opentelemetry-collector/exporter/exporterhelper v0.147.1-0.20260929015615-5305dd99ab5b/go.mod h1:6Yl9DTcsj8tRyjOfNFR0rUjkZil6Z7qwWcDb1fEfFvA=
+github.com/ijustyce/opentelemetry-collector/exporter/exporterhelper v0.147.1-0.20261009060331-655a536023ec/go.mod h1:6Yl9DTcsj8tRyjOfNFR0rUjkZil6Z7qwWcDb1fEfFvA=
 github.com/ijustyce/opentelemetry-collector/exporter/otlphttpexporter v0.147.1-0.20260929015615-5305dd99ab5b h1:fdBRlqP4nItuHkWRSO6plTapnOWNh7N6p34Xs/bpGWQ=
 github.com/ijustyce/opentelemetry-collector/exporter/otlphttpexporter v0.147.1-0.20260929015615-5305dd99ab5b/go.mod h1:V2qiWk2gCWYx+Gb7mwrb+U4Oc/Fp4lksJKQ6jd4rZ8w=
+github.com/ijustyce/opentelemetry-collector/exporter/otlphttpexporter v0.147.1-0.20261009060331-655a536023ec/go.mod h1:baE9iiNmY4C5ntctcW2QzlWghUN+ATnZ84kl2/2enwQ=
 github.com/ijustyce/opentelemetry-collector/processor/batchprocessor v0.147.1-0.20260929015615-5305dd99ab5b h1:vPXOsjHaR9fMEDG01tPNmuL9uscNSxrPn7r+W7AmvkM=
 github.com/ijustyce/opentelemetry-collector/processor/batchprocessor v0.147.1-0.20260929015615-5305dd99ab5b/go.mod h1:31Qhvlc0BRQqR4MO/RvsfvR1EXC0ki4gku9z7/5DJq4=
 github.com/illumos/go-kstat v0.0.0-20210513183136-173c9b0a9973 h1:hk4LPqXIY/c9XzRbe7dA6qQxaT6Axcbny0L/G5a4owQ=
