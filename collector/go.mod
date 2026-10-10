@@ -1108,11 +1108,11 @@ replace github.com/open-telemetry/opentelemetry-collector-contrib/pkg/stanza => 
 
 replace github.com/open-telemetry/opentelemetry-collector-contrib/receiver/kafkareceiver => github.com/ijustyce/opentelemetry-collector-contrib/receiver/kafkareceiver v0.147.1-0.20260929064250-cafa88dd466d
 
-replace go.opentelemetry.io/collector/exporter/exporterhelper => github.com/ijustyce/opentelemetry-collector/exporter/exporterhelper v0.147.1-0.20261009060331-655a536023ec
+replace go.opentelemetry.io/collector/exporter/exporterhelper => github.com/ijustyce/opentelemetry-collector/exporter/exporterhelper v0.147.1-0.20261010064648-0beb2e85f134
 
-replace go.opentelemetry.io/collector/exporter/otlphttpexporter => github.com/ijustyce/opentelemetry-collector/exporter/otlphttpexporter v0.147.1-0.20261009060331-655a536023ec
+replace go.opentelemetry.io/collector/exporter/otlphttpexporter => github.com/ijustyce/opentelemetry-collector/exporter/otlphttpexporter v0.147.1-0.20261010064648-0beb2e85f134
 
-replace go.opentelemetry.io/collector/processor/batchprocessor => github.com/ijustyce/opentelemetry-collector/processor/batchprocessor v0.147.1-0.20261009060331-655a536023ec
+replace go.opentelemetry.io/collector/processor/batchprocessor => github.com/ijustyce/opentelemetry-collector/processor/batchprocessor v0.147.1-0.20261010064648-0beb2e85f134
 
 replace github.com/Azure/azure-sdk-for-go => github.com/Azure/azure-sdk-for-go v68.0.0+incompatible
 

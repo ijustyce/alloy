@@ -51,15 +51,15 @@ replaces:
 
   - comment: Replace exporterhelper with fork
     dependency: go.opentelemetry.io/collector/exporter/exporterhelper
-    replacement: github.com/ijustyce/opentelemetry-collector/exporter/exporterhelper v0.147.1-0.20261009060331-655a536023ec
+    replacement: github.com/ijustyce/opentelemetry-collector/exporter/exporterhelper v0.147.1-0.20261010064648-0beb2e85f134
 
   - comment: Use the sibling Collector checkout for OTLP HTTP fallback support during local development.
     dependency: go.opentelemetry.io/collector/exporter/otlphttpexporter
-    replacement: github.com/ijustyce/opentelemetry-collector/exporter/otlphttpexporter v0.147.1-0.20261009060331-655a536023ec
+    replacement: github.com/ijustyce/opentelemetry-collector/exporter/otlphttpexporter v0.147.1-0.20261010064648-0beb2e85f134
 
   - comment: Replace batchprocessor with fork
     dependency: go.opentelemetry.io/collector/processor/batchprocessor
-    replacement: github.com/ijustyce/opentelemetry-collector/processor/batchprocessor v0.147.1-0.20261009060331-655a536023ec
+    replacement: github.com/ijustyce/opentelemetry-collector/processor/batchprocessor v0.147.1-0.20261010064648-0beb2e85f134
 
   - comment: Replace directives from Loki — Azure SDK
     dependency: github.com/Azure/azure-sdk-for-go
