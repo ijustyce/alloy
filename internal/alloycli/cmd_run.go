@@ -91,7 +91,7 @@ run starts an HTTP server which can be used to debug Grafana Alloy or
 force it to reload (by sending a GET or POST request to /-/reload). The listen
 address can be changed through the --server.http.listen-addr flag.
 
-Send a POST request to /prestop to initiate graceful shutdown.
+Send a GET request to /prestop to wait for graceful shutdown.
 
 By default, the HTTP server exposes a debugging UI at /. The path of the
 debugging UI can be changed by providing a different value to
@@ -223,7 +223,15 @@ func (fr *alloyRun) checkExperimentalFlags() error {
 
 func (fr *alloyRun) Run(cmd *cobra.Command, configPath string) error {
 	var wg sync.WaitGroup
-	defer wg.Wait()
+	shutdownDone := make(chan struct{})
+	var httpService *httpservice.Service
+	defer func() {
+		wg.Wait()
+		close(shutdownDone)
+		if httpService != nil {
+			_ = httpService.WaitForShutdown(context.Background())
+		}
+	}()
 
 	ctx, cancel := interruptContext(cmd.Context())
 	defer cancel()
@@ -346,13 +354,14 @@ func (fr *alloyRun) Run(cmd *cobra.Command, configPath string) error {
 		})
 	}
 
-	httpService := httpservice.New(httpservice.Options{
+	httpService = httpservice.New(httpservice.Options{
 		Logger:   l,
 		Tracer:   t,
 		Gatherer: prometheus.DefaultGatherer,
 
 		ReadyFunc:    func() bool { return ready() },
 		ShutdownFunc: cancel,
+		ShutdownDone: shutdownDone,
 		ReloadFunc: func() error {
 			_, err := reload()
 			return err

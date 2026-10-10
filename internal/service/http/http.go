@@ -53,6 +53,7 @@ type Options struct {
 	ReadyFunc    func() bool
 	ReloadFunc   func() error
 	ShutdownFunc func()
+	ShutdownDone <-chan struct{}
 
 	HTTPListenAddr   string                // Address to listen for HTTP traffic on.
 	MemoryListenAddr string                // Address to accept in-memory traffic on.
@@ -75,6 +76,8 @@ type Service struct {
 	tracer       trace.TracerProvider
 	gatherer     prometheus.Gatherer
 	opts         Options
+	serverMut    sync.Mutex
+	server       *http.Server
 
 	winMut sync.Mutex
 	win    *server.WinCertStoreHandler
@@ -289,12 +292,24 @@ func (s *Service) Run(ctx context.Context, host service.Host) error {
 
 	if s.opts.ShutdownFunc != nil {
 		shutdown := sync.OnceFunc(s.opts.ShutdownFunc)
-		r.HandleFunc("/prestop", func(w http.ResponseWriter, _ *http.Request) {
+		r.HandleFunc("/prestop", func(w http.ResponseWriter, req *http.Request) {
 			s.log.Info("graceful shutdown requested via /prestop endpoint")
-			w.WriteHeader(http.StatusAccepted)
-			_, _ = fmt.Fprintln(w, "graceful shutdown requested")
-			_ = http.NewResponseController(w).Flush()
 			shutdown()
+			if s.opts.ShutdownDone != nil {
+				select {
+				case <-s.opts.ShutdownDone:
+					s.log.Info("graceful shutdown complete")
+					w.WriteHeader(http.StatusOK)
+					_, _ = fmt.Fprintln(w, "graceful shutdown complete")
+				case <-req.Context().Done():
+					s.log.Info("graceful shutdown timeout")
+					w.WriteHeader(http.StatusServiceUnavailable)
+					_, _ = fmt.Fprintln(w, "graceful shutdown timeout")
+				}
+				s.log.Info("sleep 5s then to exit")
+				time.Sleep(5 * time.Second)
+				s.log.Info("finish sleep exit now")
+			}
 		}).Methods(http.MethodGet)
 	}
 
@@ -318,6 +333,9 @@ func (s *Service) Run(ctx context.Context, host service.Host) error {
 	protos.SetHTTP2(true)
 	protos.SetUnencryptedHTTP2(true)
 	srv := &http.Server{Handler: r, Protocols: protos}
+	s.serverMut.Lock()
+	s.server = srv
+	s.serverMut.Unlock()
 
 	s.log.Info("now listening for http traffic", "addr", s.opts.HTTPListenAddr)
 
@@ -338,6 +356,16 @@ func (s *Service) Run(ctx context.Context, host service.Host) error {
 
 	<-ctx.Done()
 	return nil
+}
+
+func (s *Service) WaitForShutdown(ctx context.Context) error {
+	s.serverMut.Lock()
+	server := s.server
+	s.serverMut.Unlock()
+	if server == nil {
+		return nil
+	}
+	return server.Shutdown(ctx)
 }
 
 // IsReady returns true if Alloy is deemed ready based on the provided ReadyFunc

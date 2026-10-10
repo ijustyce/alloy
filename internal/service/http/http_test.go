@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"io"
 	"net/http"
+	"sync"
 	"sync/atomic"
 	"testing"
 	"time"
@@ -366,10 +367,10 @@ func TestPrestop(t *testing.T) {
 		status int
 		calls  int32
 	}{
-		{"unauthorized", http.MethodPost, false, http.StatusUnauthorized, 0},
-		{"get rejected", http.MethodGet, true, http.StatusMethodNotAllowed, 0},
-		{"shutdown", http.MethodPost, true, http.StatusAccepted, 1},
-		{"repeated shutdown", http.MethodPost, true, http.StatusAccepted, 1},
+		{"unauthorized", http.MethodGet, false, http.StatusUnauthorized, 0},
+		{"post rejected", http.MethodPost, true, http.StatusMethodNotAllowed, 0},
+		{"shutdown", http.MethodGet, true, http.StatusOK, 1},
+		{"repeated shutdown", http.MethodGet, true, http.StatusOK, 1},
 	} {
 		t.Run(test.name, func(t *testing.T) {
 			req, err := http.NewRequest(test.method, "http://"+env.ListenAddr()+"/prestop", nil)
@@ -386,6 +387,60 @@ func TestPrestop(t *testing.T) {
 			require.Equal(t, test.calls, calls.Load())
 		})
 	}
+}
+
+func TestPrestopWaitsForShutdown(t *testing.T) {
+	ctx, cancel := context.WithCancel(context.Background())
+	defer cancel()
+	env, err := newTestEnvironment(t)
+	require.NoError(t, err)
+	require.NoError(t, env.ApplyConfig(""))
+	shutdownDone := make(chan struct{})
+	finishShutdown := sync.OnceFunc(func() { close(shutdownDone) })
+	t.Cleanup(finishShutdown)
+	env.svc.opts.ShutdownFunc = cancel
+	env.svc.opts.ShutdownDone = shutdownDone
+	serviceDone := make(chan error, 1)
+	go func() { serviceDone <- env.Run(ctx) }()
+	client := &http.Client{Timeout: 5 * time.Second}
+	util.Eventually(t, func(t require.TestingT) {
+		resp, err := client.Get("http://" + env.ListenAddr() + "/-/ready")
+		require.NoError(t, err)
+		resp.Body.Close()
+	})
+	responseDone := make(chan struct{})
+	var response *http.Response
+	var responseErr error
+	go func() {
+		response, responseErr = client.Get("http://" + env.ListenAddr() + "/prestop")
+		close(responseDone)
+	}()
+	select {
+	case err := <-serviceDone:
+		require.NoError(t, err)
+	case <-time.After(5 * time.Second):
+		t.Fatal("HTTP service shutdown blocked on prestop handler")
+	}
+	select {
+	case <-responseDone:
+		t.Fatal("prestop returned before shutdown completed")
+	case <-time.After(100 * time.Millisecond):
+	}
+	finishShutdown()
+	waitCtx, waitCancel := context.WithTimeout(context.Background(), 5*time.Second)
+	defer waitCancel()
+	require.NoError(t, env.svc.WaitForShutdown(waitCtx))
+	select {
+	case <-responseDone:
+	case <-waitCtx.Done():
+		t.Fatal("prestop did not return after shutdown completed")
+	}
+	require.NoError(t, responseErr)
+	defer response.Body.Close()
+	body, err := io.ReadAll(response.Body)
+	require.NoError(t, err)
+	require.Equal(t, http.StatusOK, response.StatusCode)
+	require.Equal(t, "graceful shutdown complete\n", string(body))
 }
 
 type testEnvironment struct {
