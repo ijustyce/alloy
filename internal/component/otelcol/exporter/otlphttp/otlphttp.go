@@ -49,7 +49,8 @@ type Arguments struct {
 	MetricsEndpoint string `alloy:"metrics_endpoint,attr,optional"`
 	LogsEndpoint    string `alloy:"logs_endpoint,attr,optional"`
 
-	Encoding string `alloy:"encoding,attr,optional"`
+	Encoding        string `alloy:"encoding,attr,optional"`
+	PrecompressLogs bool   `alloy:"precompress_logs,attr,optional"`
 }
 
 var _ exporter.Arguments = Arguments{}
@@ -94,6 +95,7 @@ func (args Arguments) Convert() (otelcomponent.Config, error) {
 		MetricsEndpoint: args.MetricsEndpoint,
 		LogsEndpoint:    args.LogsEndpoint,
 		Encoding:        otlphttpexporter.EncodingType(args.Encoding),
+		PrecompressLogs: args.PrecompressLogs,
 	}, nil
 }
 
