@@ -5,7 +5,9 @@ import (
 	"fmt"
 	"io"
 	"net/http"
+	"sync/atomic"
 	"testing"
+	"time"
 
 	"github.com/phayes/freeport"
 	"github.com/prometheus/client_golang/prometheus"
@@ -329,6 +331,61 @@ func TestUnhealthy(t *testing.T) {
 
 		require.Equal(t, http.StatusInternalServerError, resp.StatusCode)
 	})
+}
+
+func TestPrestop(t *testing.T) {
+	ctx, cancel := context.WithCancel(context.Background())
+	defer cancel()
+	env, err := newTestEnvironment(t)
+	require.NoError(t, err)
+	require.NoError(t, env.ApplyConfig(""))
+	var calls atomic.Int32
+	env.svc.opts.ShutdownFunc = func() { calls.Add(1) }
+	env.svc.authenticator = basicAuthenticator("operator", "secret")
+	done := make(chan error, 1)
+	go func() { done <- env.Run(ctx) }()
+	t.Cleanup(func() {
+		cancel()
+		select {
+		case err := <-done:
+			require.NoError(t, err)
+		case <-time.After(5 * time.Second):
+			t.Error("HTTP service did not stop")
+		}
+	})
+	client := &http.Client{Timeout: 5 * time.Second}
+	util.Eventually(t, func(t require.TestingT) {
+		resp, err := client.Get("http://" + env.ListenAddr() + "/-/ready")
+		require.NoError(t, err)
+		resp.Body.Close()
+	})
+	for _, test := range []struct {
+		name   string
+		method string
+		auth   bool
+		status int
+		calls  int32
+	}{
+		{"unauthorized", http.MethodPost, false, http.StatusUnauthorized, 0},
+		{"get rejected", http.MethodGet, true, http.StatusMethodNotAllowed, 0},
+		{"shutdown", http.MethodPost, true, http.StatusAccepted, 1},
+		{"repeated shutdown", http.MethodPost, true, http.StatusAccepted, 1},
+	} {
+		t.Run(test.name, func(t *testing.T) {
+			req, err := http.NewRequest(test.method, "http://"+env.ListenAddr()+"/prestop", nil)
+			require.NoError(t, err)
+			if test.auth {
+				req.SetBasicAuth("operator", "secret")
+			}
+			resp, err := client.Do(req)
+			require.NoError(t, err)
+			defer resp.Body.Close()
+			_, err = io.ReadAll(resp.Body)
+			require.NoError(t, err)
+			require.Equal(t, test.status, resp.StatusCode)
+			require.Equal(t, test.calls, calls.Load())
+		})
+	}
 }
 
 type testEnvironment struct {

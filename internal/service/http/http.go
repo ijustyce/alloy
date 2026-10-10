@@ -50,8 +50,9 @@ type Options struct {
 	Tracer   trace.TracerProvider // Where to send traces.
 	Gatherer prometheus.Gatherer  // Where to collect metrics from.
 
-	ReadyFunc  func() bool
-	ReloadFunc func() error
+	ReadyFunc    func() bool
+	ReloadFunc   func() error
+	ShutdownFunc func()
 
 	HTTPListenAddr   string                // Address to listen for HTTP traffic on.
 	MemoryListenAddr string                // Address to accept in-memory traffic on.
@@ -284,6 +285,17 @@ func (s *Service) Run(ctx context.Context, host service.Host) error {
 			s.log.Info("config reloaded")
 			_, _ = fmt.Fprintln(w, "config reloaded")
 		}).Methods(http.MethodGet, http.MethodPost)
+	}
+
+	if s.opts.ShutdownFunc != nil {
+		shutdown := sync.OnceFunc(s.opts.ShutdownFunc)
+		r.HandleFunc("/prestop", func(w http.ResponseWriter, _ *http.Request) {
+			s.log.Info("graceful shutdown requested via /prestop endpoint")
+			w.WriteHeader(http.StatusAccepted)
+			_, _ = fmt.Fprintln(w, "graceful shutdown requested")
+			_ = http.NewResponseController(w).Flush()
+			shutdown()
+		}).Methods(http.MethodGet)
 	}
 
 	// Wire in support bundle generator

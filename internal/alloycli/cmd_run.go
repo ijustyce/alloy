@@ -6,6 +6,7 @@ import (
 	"errors"
 	"fmt"
 	"io/fs"
+	"log"
 	"log/slog"
 	"os"
 	"os/signal"
@@ -89,6 +90,8 @@ into a single unit. Subdirectories are not recursively searched for further merg
 run starts an HTTP server which can be used to debug Grafana Alloy or
 force it to reload (by sending a GET or POST request to /-/reload). The listen
 address can be changed through the --server.http.listen-addr flag.
+
+Send a POST request to /prestop to initiate graceful shutdown.
 
 By default, the HTTP server exposes a debugging UI at /. The path of the
 debugging UI can be changed by providing a different value to
@@ -348,7 +351,8 @@ func (fr *alloyRun) Run(cmd *cobra.Command, configPath string) error {
 		Tracer:   t,
 		Gatherer: prometheus.DefaultGatherer,
 
-		ReadyFunc: func() bool { return ready() },
+		ReadyFunc:    func() bool { return ready() },
+		ShutdownFunc: cancel,
 		ReloadFunc: func() error {
 			_, err := reload()
 			return err
@@ -636,7 +640,7 @@ func interruptContext(parent context.Context) (context.Context, context.CancelFu
 		}
 		signal.Stop(sig)
 
-		fmt.Fprintln(os.Stderr, "interrupt received")
+		log.Default().Println("interrupt received")
 	}()
 
 	return ctx, cancel
