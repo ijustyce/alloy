@@ -1464,6 +1464,7 @@ github.com/ianlancetaylor/demangle v0.0.0-20251118225945-96ee0021ea0f h1:Fnl4pzx
 github.com/ianlancetaylor/demangle v0.0.0-20251118225945-96ee0021ea0f/go.mod h1:gx7rwoVhcfuVKG5uya9Hs3Sxj7EIvldVofAWIUtGouw=
 github.com/ijustyce/opentelemetry-collector-contrib/pkg/stanza v0.147.1-0.20260929064250-cafa88dd466d h1:MmKpxN6ODJtZ4LGbb9sPD5mzF37nJp91bZLItASpykM=
 github.com/ijustyce/opentelemetry-collector-contrib/pkg/stanza v0.147.1-0.20260929064250-cafa88dd466d/go.mod h1:0XWKoCnhCdBNMSe/w+mn2nvI/9mQfAnf9Cv14fAQASE=
+github.com/ijustyce/opentelemetry-collector-contrib/pkg/stanza v0.147.1-0.20261013081254-75e99b247dd0/go.mod h1:0XWKoCnhCdBNMSe/w+mn2nvI/9mQfAnf9Cv14fAQASE=
 github.com/ijustyce/opentelemetry-collector-contrib/receiver/kafkareceiver v0.147.1-0.20260929064250-cafa88dd466d h1:EtAx3ZR6EXzo8WdVWOtD1Pk5Z+74dIccTaKQGQ+/Dvc=
 github.com/ijustyce/opentelemetry-collector-contrib/receiver/kafkareceiver v0.147.1-0.20260929064250-cafa88dd466d/go.mod h1:YHzzAESLZ+ecM23UheTEaZdP67xHyQxGzQ1u1AHcbKo=
 github.com/ijustyce/opentelemetry-collector/exporter/exporterhelper v0.147.1-0.20261010064648-0beb2e85f134 h1:B8MSadk3sw1RZTiLl4626cH1ndWKMtzO5CDxrWE90eM=
